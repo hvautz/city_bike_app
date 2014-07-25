@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CityBike</title>
+  <meta charset="utf-8">
+  <meta name="description" content="CityBike">
+  <meta name="author" content="H. Vautz">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>CityBike</h1>
+    <h2>a peek into the past</h2>
+    <p>H. Vautz<br/>BI Consultant, future data scientist</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>An shiny-App to take a peek into the past of CityBike (NY)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>using real data from <a href="http://www.citibikenyc.com">citibikenyc</a></li>
+<li>it&#39;s a very simple POC to test the flexibility and possibilities of shiny (especially leaflet)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Some facts about the Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>with the determining factor of shiny (it&#39;s pretty slow) only a very small part of the available<br /> data could be used ( 30,000 rows of ~900,000 rows for 05/2014 )</li>
+<li>the whole dataset of May has about 6,200 unique bikes</li>
+<li>in May all bikes together were rode for about 211,718 hours (8,822 days)</li>
+<li>the chosen data (first 30,000 rows) contain about 7,011 hours (292 days) and 4615 bikes</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>More facts about the Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The top 5 starting stations, regarding trip duration (in seconds)</li>
+</ul>
+
+<pre><code class="r">library(plyr)
+top &lt;- ddply(dat,~start.station.name,summarise,sum=sum(tripduration),mean=mean(tripduration))
+top &lt;- top[order(top$sum, decreasing=T),]
+
+top[1:5, ]
+</code></pre>
+
+<pre><code>##                    start.station.name     sum   mean
+## 60                 Broadway &amp; W 60 St 9247300 1352.1
+## 321             West St &amp; Chambers St 8908053 1158.8
+## 69             Central Park S &amp; 6 Ave 8111882 2011.4
+## 132          E 42 St &amp; Vanderbilt Ave 7900347  810.5
+## 173 Grand Army Plaza &amp; Central Park S 7459531 1507.0
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Don&#39;t forget ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <p class='..'>to try this app </p>
+
+<p><a href="http://hvautz.shinyapps.io/CityBike/">CityBike - App</a><br>
+<em>it may take a bit, shiny is not the fastest :(</em></p>
+
+<p>and if you want the code:</p>
+
+<p><a href="https://github.com/hvautz/city_bike_app">Github - repo</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='An shiny-App to take a peek into the past of CityBike (NY)'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Some facts about the Data'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='More facts about the Data'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Don&#39;t forget ...'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
