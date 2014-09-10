@@ -9,7 +9,7 @@ dat <- read.csv(file            = "./data/2014_05_trip_data.csv"
    , stringsAsFactor = F
    , na.strings = "\\N"
 #   , nrows = 300001 # takes 2-3 min to load (local)
-   , nrows = 100001
+   , nrows = 30001
 )
 
 dat <- dat[, c(2:12)]
