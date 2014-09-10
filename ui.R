@@ -1,5 +1,7 @@
 
 library(shiny)
+library(rCharts)
+library(RColorBrewer)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -10,8 +12,8 @@ shinyUI(fluidPage(
    # Sidebar with conditional Panel for different Input types for ech tabsetPanel
    sidebarLayout(
       
-      conditionalPanel( condition = "input.tabsetPanel != 'dataPanel'"
-                      , sidebarPanel( width = 2
+       conditionalPanel( condition = "input.tabsetPanel != 'dataPanel'"
+                       , sidebarPanel( width = 2
                                    
                                     , conditionalPanel( condition = "input.tabsetPanel == 'stationPanel'"
                                                       , sliderInput(inputId = "stationSlider"
@@ -40,21 +42,27 @@ shinyUI(fluidPage(
                                                                          "to Display it's Starting-Stations. ",
                                                                          "Click on the marker to see more details"))
                                                       )
-                                    )
-      )
-
-      # mainPanel with different aspects of the data
-    , mainPanel(
-         tabsetPanel( id = "tabsetPanel"
+                                     )
+       )
+ 
+       # mainPanel with different aspects of the data
+     , mainPanel(
+          tabsetPanel( id = "tabsetPanel"
                     , tabPanel(title = "Station overview"
                              , value = "stationPanel"
-                             , mapOutput('StationChart'))
+                             #, mapOutput("StationChart") worked till 3.1.1 ...
+                             , chartOutput('StationChart', 'leaflet')
+                       )
                     , tabPanel(title = "Bikeroute history"
                              , value ="bikeHistPanel"
-                             , mapOutput('BikeHistChart'))
+                       #      , mapOutput('BikeHistChart')
+                             , chartOutput('BikeHistChart', 'leaflet')
+                       )
                     , tabPanel(title = "Bikeroute history 2"
                              , value ="bikeHistPanel2"
-                             , mapOutput('BikeHistChart2'))
+                       #      , mapOutput('BikeHistChart2')
+                             , chartOutput('BikeHistChart2', 'leaflet')
+                       )
                     )
                )
    )

@@ -1,5 +1,6 @@
 library(shiny)
 library(rCharts)
+library(RColorBrewer)
 
 shinyServer(function(input, output) {
    
@@ -77,11 +78,11 @@ shinyServer(function(input, output) {
          )
       }
       
-      map$tileLayer(provider = 'Esri.WorldImagery')
-      map$set(width = 1000, height = 600)
-      map$enablePopover(TRUE)
-      map$fullScreen(TRUE)
-      return(map)
+       map$tileLayer(provider = 'Esri.WorldImagery')
+       map$set(width = 1000, height = 600)
+       map$enablePopover(TRUE)
+       map$fullScreen(TRUE)
+       return(map)
    })
    
    #### Bike History Chart ####
